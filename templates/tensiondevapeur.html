@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}Tension De Vapeur{% endblock title %}
+
+{% block content %}
+    
+    <div class="row">
+            <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Tension De Vapeur</h4>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="myChart" height="80"></canvas>
+                        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script><script>
+                            var statistics_chart = document.getElementById("myChart").getContext('2d');
+
+                            var myChart = new Chart(statistics_chart, {
+                            type: 'line',
+                            data: {
+                                labels: {{labels|safe}},
+                                datasets: [{
+                                data: {{data|safe}},
+                                borderWidth: 5,
+                                borderColor: '#6777ef',
+                                backgroundColor: 'transparent',
+                                pointBackgroundColor: '#fff',
+                                pointBorderColor: '#6777ef',
+                                pointRadius: 4
+                                }]
+                            },
+                            options: {
+                                legend: {
+                                display: false
+                                },
+                                scales: {
+                                yAxes: [{
+                                    gridLines: {
+                                    display: false,
+                                    drawBorder: false,
+                                    },
+                                    tricks: {
+                                    	stepSize: 150,
+                                    }
+                                }],
+                                xAxes: [{
+                                    gridLines: {
+                                    color: '#fbfbfb',
+                                    lineWidth: 2,
+                                    }
+				    
+                                }]
+                                },
+                            }
+                            });
+                        </script>
+                        <div class="statistic-details mt-sm-4">
+                            <div class="statistic-details-item">
+                                <span class="text-muted"><span class="text-primary"><i class="fas fa-location-arrow"></i></span></span>
+                                <div class="detail-value">{{last_tens_de_vap.tension_de_vapeur}} hPa</div>
+                                <div class="detail-name">Tension De Vapeur instantanée</div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+	
+            <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+			
+		            
+			    <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+		        	<div class="card">
+					<form method="get">
+						<div class="card-header">
+							<h4>Valeurs Tension De Vapeur</h4>
+						</div>
+						<div>
+							{{myFilter.form|crispy}}
+							<button class="btn btn-primary" type="submit">Recherche</button>
+                            <button class="btn btn-warning" type="reset"><a href="{% url 'tension_de_vapeur' %}" style="color:#fff;text-decoration: none;">Annuler</a></button>
+						</div>
+					</form>
+			    </div>
+ 				 </div>
+
+                    </div>
+                    <div class="card-body p-0">
+                    <div class="table-responsive">
+			<div class="container">
+		                <table class="table table-striped mb-0">
+		                	<thead>
+				            <tr>
+				                <th>Date</th>
+				                <th>Time</th>
+				                <th>Tension De Vapeur(hPa)</th>
+				            </tr>
+		                	</thead>
+					<tbody>
+				            {% for t in tens_de_vap %}
+				                <tr>
+				                    <td>
+				                        {{t.date}}
+				                    </td>
+				                    <td>
+				                        {{t.time}}
+				                    </td>
+				                    <td>
+				                        {{t.tension_de_vapeur}}
+				                    </td>
+				                </tr>
+				                    
+				            {% endfor %}
+					</tbody>
+		                    
+		                </table>	
+			</div></br></br>
+                    </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    
+    
+
+{% endblock content %}

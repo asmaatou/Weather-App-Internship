@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Speci{% endblock title %}
+
+{% block content %}
+
+
+<div class="col-lg-12 col-md-12 col-12 col-sm-12">
+    <div class="card">
+        <div class="card-header">
+            <h4>Message Speci</h4>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="">
+                <div class="form-group">
+                    <input type="button" value="Données" class="btn btn-success"></input>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control h-50" id="exampleFormControlTextarea1" rows="10" name="comment" id="comment_text" cols="40" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <input type="text" placeholder="IP" id="ip" name="ip" style="visibility:hidden">
+                    <input type="text" placeholder="Login" id="nom" name="nom" style="visibility:hidden">
+                    <input type="password" placeholder="Mot de passe" id="mdp" name="mdp" style="visibility:hidden" >
+                    <input id="check" name="check" type="checkbox" value="" onClick="Lien();">
+                    <button type="submit" class="btn btn-primary" >Envoyer</button>
+                    <button type="reset" class="btn btn-danger" onclick="chargerM4()">Annuler</button>
+                </div>
+            </form>          
+        </div>
+                    
+    </div>
+</div>
+<script> 
+    function chargerM4() {
+        document.getElementById('comment_text').innerHTML ='';
+        document.getElementById('comment_text').innerHTML ='' ;
+    }
+    function Lien() {		
+		if ( document.getElementById("check").checked == true)
+		{
+		document.getElementById("ip").style.visibility = "visible";
+		document.getElementById("nom").style.visibility = "visible";
+		document.getElementById("mdp").style.visibility = "visible";
+		document.getElementById('ip').focus(); 		
+		}
+		else
+		{
+		document.getElementById("ip").style.visibility = "hidden";
+		document.getElementById("nom").style.visibility = "hidden";
+		document.getElementById("mdp").style.visibility = "hidden";
+		}
+	}
+</script>
+
+  
+{% endblock content %}

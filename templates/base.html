@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <!--<meta HTTP-EQUIV="Refresh" CONTENT="30; {% url 'valeurs' %}"-->
+  <title>{% block title%} {%endblock%}</title>
+
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  
+  
+
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/table.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/clock.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/components.css' %} ">
+  <link rel="shortcut icon" href="{% static 'assets/img/logo.png' %} " type="image/x-icon">
+
+   
+</head>
+
+<body>
+  <div id="app">
+        <div class="main-wrapper">
+        <div class="navbar-bg"></div>
+        <nav class="navbar navbar-expand-lg main-navbar">
+            <form class="form-inline mr-auto">
+            <ul class="navbar-nav mr-3">
+                <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+                <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
+            </ul>
+            </form>
+            <ul class="navbar-nav navbar-right">
+            
+            <li class="dropdown"><a  data-toggle="dropdown" class="nav-link nav-link-lg nav-link-user">
+                
+                <div class="d-sm-none d-lg-inline-block">CPM-CASA</div></a>
+                
+                </div>
+            </li>
+            </ul>
+        </nav>
+        <div class="main-sidebar">
+            <aside id="sidebar-wrapper">
+                <div class="sidebar-brand" style="height:12em">
+                    <img src="{% static 'assets/img/maroc.png' %}">
+                    <p style="color:#708090">DIRECTION GENERALE DE LA METEOROLOGIE</p>
+                </div>
+                <div class="sidebar-brand sidebar-brand-sm">
+                    <a href="{% url 'valeurs' %}">Météo</a>
+                </div>
+                
+                <ul class="sidebar-menu">
+                    <li class="nav-item dropdown active">
+                        <a href="{% url 'valeurs' %}" ><i class="fas fa-clipboard-check"></i><span>Valeurs instantanées</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Historique</span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="nav-link" href="{% url 'temperature' %}"><span>Température</span></a>
+                            </li>
+
+                            <li><a class="nav-link" href="{% url 'humidite' %}"><span>Humidité</span></a></li>
+
+                            <li>
+                                <a class="nav-link" href="{% url 'pression' %}"><span>Pression</span></a>
+                            </li> 
+
+                            <li>
+                                <a class="nav-link" href="{% url 'point_de_rosee' %}"><span>Point de rosée</span></a>
+                            </li>
+                            
+                                        <li>
+                                <a class="nav-link" href="{% url 'humidite_absolue' %}"><span>Humidité Absolue</span></a>
+                            </li>
+
+                                        <li>
+                                <a class="nav-link" href="{% url 'tension_de_vapeur' %}"><span>Tension de Vapeur</span></a>
+                            </li>
+
+                                        <li>
+                                <a class="nav-link" href="{% url 'pression_nv_mer' %}"><span>Pression Nv Mer</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-envelope"></i> <span>Message</span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="nav-link" href="{% url 'Metar' %}"><span>Métar</span></a>
+                            </li>
+
+                            <li><a class="nav-link" href="{% url 'Synop' %}"><span>Synop</span></a></li>
+
+                            <li>
+                                <a class="nav-link" href="{% url 'Speci' %}"><span>Speci</span></a>
+                            </li> 
+                        </ul>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+    </div>
+<div class="main-content">
+        <section class="section">
+            {% block content %}
+
+            {% endblock content %}
+        </section>
+</div>
+
+<footer class="main-footer">
+    <div class="footer-left col-md-6">
+        Copyright &copy; 2021 <div class="bullet"></div>TA</a>
+    </div>
+</footer>
+  <!-- General JS Scripts -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Template JS File -->
+  <script src="{% static 'assets/js/scripts.js' %}"></script>
+  <script src="{% static 'assets/js/clock.js' %}"></script>
+  <script src="{% static 'assets/js/custom.js' %}"></script>
+  
+  
+  
+ 
+</body>
